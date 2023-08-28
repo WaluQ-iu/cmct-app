@@ -1,21 +1,23 @@
 
-
+// Import necessary Firestore functions
 import { getFirestore, collection, addDoc, doc, deleteDoc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+
+// Initialize Firestore database
 const db = getFirestore();
 const dbRef = collection(db, "tasks");
 
 //Mibile view toggles
-
 const leftCol = document.getElementById("left-col");
 const rightCol = document.getElementById("right-col");
 const backBtn = document.getElementById("back-btn");
 
+// Back button event listener for mobile view
 backBtn.addEventListener("click", e => {
     leftCol.style.display = "block";
     rightCol.style.display = "none";
-
 });
 
+// Toggle left and right views on mobile devices
 const toggleLeftAndRightViewsOnMobile = () => {
     if (document.body.clientWidth <= 600) {
         leftCol.style.display = "none";
@@ -25,48 +27,46 @@ const toggleLeftAndRightViewsOnMobile = () => {
 
 }
 
-//Rretrive the saved data back
-
+// Retrieve tasks data from Firestore
 let tasks = [];
-
 const getTasks = async() =>{
-
     try {
-        //const docSnap = await getDocs(dbRef);
-
         await onSnapshot(dbRef, docSnap => {
             tasks = [];
             docSnap.forEach( (doc) => { 
                 const task = doc.data();
                 task.id =doc.id;
                 tasks.push(task);
-                //console.log(doc.data().taskname);
-                //console.log(doc.id);
-    
             }) ;
-            //console.log(tasks);
             showTasks(tasks);
-
         });
- 
-
     } catch (err) {
         console.log("getTasks =" + err);
     }
-
 }
-
 getTasks();
 
-//Display summary of created tasks on the left
+//Display summary of created tasks on the left column
 const tasksList = document.getElementById("tasks-list");
 const showTasks = (tasks) => {
     tasksList.innerHTML = "";
 
     tasks.forEach(task => {
+        // Determine the CSS class based on task status
+        // let statusClass ="";
+        // if (task.taskstatus === "Pending") {
+        //     statusClass = "task-pending";
+        // } else if (task.taskstatus === "In-Progress") {
+        //     statusClass = "task-in-progress";
+        // } else if (task.taskStatus === "Completed") {
+        //     statusClass = "task-completed";
+
+        // }
+
         // Get the first two letters of the taskname
         const tasknameInitials = task.taskname.substring(0, 2).toUpperCase();
 
+        // Create list item for each task
         const li = `<li class="tasks-list-item" id="${task.id}">
             <div class="media">
                 <div class="two-letter">${tasknameInitials}</div>
@@ -76,7 +76,7 @@ const showTasks = (tasks) => {
                     ${task.taskname} 
                 </div>
                 <div class="subtitle">
-                    Assigned to: ${task.assignedto} | Status: ${task.taskstatus}
+                    ${task.assignedto} | ${task.taskstatus}
                 </div>
             </div>
             <div class="action">
@@ -88,78 +88,59 @@ const showTasks = (tasks) => {
     })
 }
 
-
-
-/// View Tasks details on click
-
+/// Task list item click event handler
 const taskListPressed = (event) =>{
-    //console.log("Pressed")
     const id = event.target.closest("li").getAttribute("id");
     if(event.target.className === "edit-task") {
         editButtonPressed(id);
-
     } else if (event.target.className === "delete-task"){
         deleteButtonPressed(id);
     } else {
         displayTaskOnTaskView(id);
         toggleLeftAndRightViewsOnMobile();
     }
-
-
 }
-
 tasksList.addEventListener("click", taskListPressed);
 
 //Function to delete a task
 const deleteButtonPressed = async (id) =>{
     const isConfirmed =confirm("Are you sure you want to delete this task?");
     if (isConfirmed){
-        
         try {
-
             const docRef = doc(db, "tasks", id);
-            await deleteDoc(docRef);
-                  
+            await deleteDoc(docRef);   
              } catch(e){
                  setErrorMessage("server side error", "Unable delete the task");
                  showErrorMessages();
-         
              }
-         
-         
-
     }
-
-
 }
 
-
-//Edit the data
-
+//Edit button click event handler
 const editButtonPressed = (id) => {
     taskOverlay.style.display = "flex";
-
+    // Retrieve task data for editing
     const task = getTask(id);
+    // Update form fields with task data
       taskName.value =task.taskname;
       startDate.value = task.startdate;
       priority.value = task.priority;
       assignedTo.value = task.assignedto;
       taskStatus.value = task.taskstatus;
       email.value = task.email;
-
       taskOverlay.setAttribute("task-id", task.id);
 }  
 
-
+// Get task by ID
 const getTask = (id) => {
     return tasks.find(task => {
         return task.id === id;
     });
 }
 
+// Display task details on the right column
 const displayTaskOnTaskView =(id) => {
     const task = getTask(id);
-//console.log(task);
 const rightColDetail = document.getElementById("right-col-detail");
 rightColDetail.innerHTML = `
 <div class="label">Task:</div>
@@ -172,12 +153,9 @@ rightColDetail.innerHTML = `
 <div class="data">${task.taskstatus} </div>
 <div class="label">Suppervisor Email:</div>
 <div class="data">${task.email} </div>`;
-
 }
  
-
-
-
+// Add button click event handler to show task addition menu
 const addBtn = document.querySelector(".add-btn");
 const taskOverlay = document.getElementById("task-overlay");
 const closeBtn = document.querySelector(".close-btn");
@@ -194,11 +172,15 @@ const addBtnPressed = () => {
     taskStatus.value = "";
     email.value = "";
 }
+addBtn.addEventListener("click", addBtnPressed);
 
+// Close button click event handler for the task overlay
 const closeBtnPressed = () => {
     taskOverlay.style.display ="none";
 }
+closeBtn.addEventListener("click", closeBtnPressed);
 
+// Task overlay click event handler to close when clicking outside the overlay
 const taskOverlayPressed = (e) => {
 
     if(e instanceof Event) {
@@ -208,19 +190,13 @@ const taskOverlayPressed = (e) => {
     } else {
         taskOverlay.style.display = "none";
     }
-
 }
-
-
-addBtn.addEventListener("click", addBtnPressed);
-closeBtn.addEventListener("click", closeBtnPressed);
 taskOverlay.addEventListener("click", taskOverlayPressed);
 
 //Validation of the inputs
 const saveBtn = document.querySelector(".save-btn");
 const error = {};
-
-const     taskName = document.getElementById("task-name"),
+const taskName = document.getElementById("task-name"),
       startDate = document.getElementById("start-date"),
       priority = document.getElementById("priority"),
       assignedTo = document.getElementById("assigned-to"),
@@ -228,29 +204,29 @@ const     taskName = document.getElementById("task-name"),
       email = document.getElementById("email");
 
       const saveBtnPressed = async () => {
-        console.log(taskName.value);
+        //console.log(taskName.value);
         validateInputs([
             taskName, startDate, priority, assignedTo, taskStatus, email
         ]);
         validateEmail(email);
         showErrorMessages(error);
-    
+    // Save task data if there are no validation errors
         if (Object.keys(error).length === 0) {
             try {
                 const taskId = taskOverlay.getAttribute("task-id");
-    
                 if (taskId) {
+                    // Update existing task
                     const editedTask = getTask(taskId);
+                    // Update task properties with input values
                     editedTask.taskname = taskName.value;
                     editedTask.startdate = startDate.value;
                     editedTask.priority = priority.value;
                     editedTask.assignedto = assignedTo.value;
                     editedTask.taskstatus = taskStatus.value;
                     editedTask.email = email.value;
-    
-                    // Update the edited task in the database
                     await updateTaskInDatabase(taskId, editedTask);
                 } else {
+                    // Add new task
                     await addDoc(dbRef, {
                         taskname: taskName.value,
                         startdate: startDate.value,
@@ -260,30 +236,30 @@ const     taskName = document.getElementById("task-name"),
                         email: email.value
                     });
                 }
-    
                 taskOverlayPressed();
-                //closeBtnPressed();
             } catch (err) {
-                setErrorMessage("server side error", "Unable to add/update your data");
+                setErrorMessage("server side error", "Unable to add/update the task");
                 showErrorMessages();
             }
         }
-    };
+    }
+    saveBtn.addEventListener("click", saveBtnPressed);
 
     // Function to update an edited task in the database
 const updateTaskInDatabase = async (taskId, editedTask) => {
     try {
         const taskDocRef = doc(dbRef, taskId);
         await updateDoc(taskDocRef, editedTask);
-       // taskOverlayPressed();
     } catch (err) {
         console.log("updateTaskInDatabase error:", err);
         throw err;
     }
 };
+
+// Validate input fields and set error messages
 const validateInputs = (inputs) => {
     inputs.forEach(input => { 
-        if(input.value.trim() === "") {
+        if(input.value.trim() === "" ) {
             //error[input.id] = input.id + " is empty";
             setErrorMessage(input, input.id + " is empty");
         }
@@ -294,17 +270,17 @@ const validateInputs = (inputs) => {
     console.log(error);
 
 }
+// Set error message and highlight input field
 const setErrorMessage = (input, message) =>{
     if(input.nodeName === "INPUT" || input.nodeName === "SELECT") {
         error[input.id] =message;
         input.style.border = "1px solid red";
-    
     } else {
         error[input] = message;
     }
-
-
 }
+
+// Validate email input to general lose email format
 const validateEmail =(input) => {
     if(input.value.trim() !== "") { 
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -317,7 +293,7 @@ const validateEmail =(input) => {
     }
 }
 }
-
+// Display error messages
 const showErrorMessages =() =>{
     const errorLabel = document.getElementById("error-label");
     errorLabel.innerHTML = "";
@@ -329,4 +305,4 @@ const showErrorMessages =() =>{
     }
 
 }
-saveBtn.addEventListener("click", saveBtnPressed);
+
