@@ -73,10 +73,10 @@ const showTasks = (tasks) => {
             </div>
             <div class="content">
                 <div class="title">
-                    ${task.taskname} ${task.assignedto}
+                    ${task.taskname} 
                 </div>
                 <div class="subtitle">
-                    ${task.startdate} ${task.taskstatus}
+                    Assigned to: ${task.assignedto} | Status: ${task.taskstatus}
                 </div>
             </div>
             <div class="action">
@@ -295,7 +295,7 @@ const validateInputs = (inputs) => {
 
 }
 const setErrorMessage = (input, message) =>{
-    if(input.nodeName === "INPUT"){
+    if(input.nodeName === "INPUT" || input.nodeName === "SELECT") {
         error[input.id] =message;
         input.style.border = "1px solid red";
     

@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta information -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title -->
     <title>Collaboration and Task Management Tool</title>
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="style.css"/>
-    
 </head>
 <body>
+    <!-- Main heading -->
     <h1>The Collaboration and Task Management Tool</h1>
 
+    <!-- Main content layout -->
     <main id="app-layout">
-
+    
+    <!-- Left column section -->
     <section id="left-col">
+        <!-- Header of the left column -->
         <header>
             <div class="left"></div>
             <div class="task-list">Tasks List</div>
@@ -20,25 +26,15 @@
                 <button class="add-btn">Add</button>
             </div>
         </header>
-
+        <!-- List of tasks -->
         <ul id="tasks-list">
-            <!-- <li class="tasks-list-item">
-                <div class="media">
-                    <div class="two-letter">AB</div>
-                </div>
-                <div class="content">
-                    <div class="title">Title</div>
-                    <div class="subtitle">Subtitle</div>
-                </div>
-                <div class="action">
-                    <button class="edit-task">Edit</button>
-                    <button class="delete-task">delete</button>
-                </div>
-            </li> -->
+          <!-- To be dynamically populated -->
         </ul>
     </section>
 
+    <!-- Right column section -->
     <section id="right-col">
+        <!-- Header of the right column -->
         <header>
             <div>
                 <button id="back-btn">Back</button>
@@ -48,20 +44,23 @@
                 <button id="log-out-btn" class="out-btn">LOG OUT</button>
             </div>
         </header>
+        <!-- Detailed view of selected task -->
         <div id="right-col-detail"></div>
-
-
-
     </section>
 
     </main>
+
     <!-- Pop-up window for adding tasks -->
     <div id="task-overlay">
         <div id="task">
+            <!-- Header of the task pop-up -->
             <div class="task-header"> <h1>Create Task</h1> </div>
+            <!-- Error labels -->
             <ul id="error-label"></ul>
 
+            <!-- Task content input fields -->
             <div class="task-content"> 
+                <!-- Row 1: Task name, Start Date, Priority -->
                 <div class="row">
                     <div class="input-group">
                         <label> Task Names</label>
@@ -73,6 +72,7 @@
                     </div>
                     <div class="input-group">
                         <label>Priority</label>
+                        <!-- Dropdown for priority selection -->
                         <select id="priority">
                             <option value="high">High</option>
                             <option value="medium">Medium</option>
@@ -80,6 +80,7 @@
                         </select>
                     </div>
                 </div>
+                <!-- Row 2: Assigned To, Task Status -->
                 <div class="row">
                     <div class="input-group">
                         <label>Assigned To</label>
@@ -87,31 +88,33 @@
                     </div>
                     <div class="input-group">
                         <label>Status</label>
-                        <input type="text" id="task-status">
+                        <select name="" id="task-status">
+                            <option value="inprogress">In Progress</option>
+                            <option value="Pending">Pending</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                        
                     </div>
-
                 </div>
-
+                <!-- Row 3: Supervisor's Email Address -->
                 <div class="row">
                     <div class="input-group">
                         <label> Supervisor's Email Address</label>
                         <input type="email" id="email">
                     </div>
- 
                 </div>
-
-                
             </div>
-
+            
+            <!-- Footer of the task pop-up -->
             <div class="task-footer">
                 <button class="close-btn">Close</button>
                 <button class="save-btn">Save</button>
             </div>
-
         </div>
-
     </div>
- <script src="firebase-sdk.js" type="module"></script>
-<script src="app.js" type="module"></script>
+    
+    <!-- Include Firebase SDK and application JavaScript files -->
+    <script src="firebase-sdk.js" type="module"></script>
+    <script src="app.js" type="module"></script>
 </body>
 </html>
