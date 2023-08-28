@@ -1,0 +1,260 @@
+
+
+/* General styling for the entire page */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f3f3f4;
+  
+}
+
+/* Styles for the login form */
+.center-box{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border: 2px solid rgb(30, 214, 51);
+    border-radius: 40px;
+    width: 300px;
+    height: 320px;
+    text-align: center;
+    color: green;
+}
+.text-field{
+    padding: 10px 30px;
+    margin: 20px 0;
+    border: 2px solid rgb(26, 184, 76);
+    border-radius: 10px;
+    font-size: 12pt;
+    color: green;
+}
+.btn-style{
+    padding: 10px 30px;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: white;
+    color: green;
+}
+.btn-style:hover{
+    background-color: green;
+    color: white; 
+}
+.an-btn{
+    margin-top: 10px;
+    border: 0;
+    background-color: green;
+    color: rgb(246, 246, 251);
+    font-size: 11pt;
+}
+
+/* Styles for the registration form (initially hidden) */
+#register-div{
+    display: none;
+}
+
+#result-box{
+    display: none;
+
+}
+
+/* Styles for the result box (initially hidden) */
+#result-box{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14pt;
+    color: rgb(28, 72, 216); 
+}
+
+/* Styles for the app layout 
+Introduce Flex-box for easy styling*/
+#app-layout #left-col {
+   /* border: 1px solid orange;*/
+    flex: 40%;
+
+}
+#app-layout #right-col {
+    /*border: 1px solid blue;*/
+    flex: 60%;
+}
+.task-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#app-layout {
+    display: flex;
+}
+header {
+    background-color: rgb(39, 196, 92);
+    color: white;
+    height: 50px;
+    display: flex;
+}
+header .left {
+    /*border: 1px solid green;*/
+    flex: 1;
+}
+header .task-list {
+    /*border: 1px solid red;*/
+    flex: 3; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+}
+header .right {
+    /*border: 1px solid yellow;*/
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+}
+
+/* Global styles for buttons on the dashboard*/
+button {
+    background-color: aqua;
+    border: none;
+    color: white;
+    font-size: 1em;
+    margin: 5px;
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+.out-btn {
+    font-size: .5em;
+}
+button:hover {
+    background-color: #ffa000;
+    cursor: pointer;
+}
+
+/* make the Task popup window transparent over the page*/
+#task-overlay {
+    background-color: rgb(0, 0, 0, 0.7);
+    width: 100%; 
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+#task-overlay #task {
+    max-width: 650px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+ /* Make the row label and assosicated input side by side */
+#task .task-content .row {
+    display: flex;
+}
+/* Nake the row fit properly and inputs below labels */
+#task .task-content .row .input-group{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 5px 15px;
+}
+
+/* Format the input fields  */
+input {
+    font-size: 16px;
+    height: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #666;
+    border: 1px solid #d6d6d6;
+    border-radius: 4px;
+}
+
+#task .task-footer {
+    display: flex;
+    justify-content: right;
+    margin: 5px 10px;
+
+}
+.close-btn{
+    background-color: #999;
+}
+
+/*Tasks List styling*/
+#tasks-list {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #999;
+}
+.tasks-list-item {
+    display: flex;
+    border-radius: 1px solid #999;
+    padding: 5px;
+}
+.tasks-list-item .media {
+    flex: 1;
+}
+.tasks-list-item .media .two-letter {
+    width: 60px;
+    height: 60px;
+    background-color: #333;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tasks-list-item .content {
+    flex:3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+.tasks-list-item .content .title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+.tasks-list-item .action {
+    flex: 1;
+    display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#right-col-detail {
+    margin: 20px;
+}
+#right-col-detail .label {
+    font-size: 1.1em;
+    margin-top: 10px;
+    font-weight: bold;
+}
+#right-col-detail .data {
+    font-size: 1.2em;
+}
+#app-layout #right-col #back-btn{
+    display: none;
+}
+
+/* Dashboard Responsive styles for small screens */
+@media only screen and (max-width:600px) {
+    #app-layout #right-col {
+        display: none;
+
+    }
+    #app-layout #right-col #back-btn{
+        margin: 20px 0 0 20px;
+        display: block;
+    }
+    #task .task-content .row {
+        flex-direction: column;
+
+    }
+}

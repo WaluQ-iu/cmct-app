@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaboration and Task Management Tool</title>
+    <link rel="stylesheet" href="style.css"/>
+    
+</head>
+<body>
+    <h1>The Collaboration and Task Management Tool</h1>
+
+    <main id="app-layout">
+
+    <section id="left-col">
+        <header>
+            <div class="left"></div>
+            <div class="task-list">Tasks List</div>
+            <div class="right">
+                <button class="add-btn">Add</button>
+            </div>
+        </header>
+
+        <ul id="tasks-list">
+            <!-- <li class="tasks-list-item">
+                <div class="media">
+                    <div class="two-letter">AB</div>
+                </div>
+                <div class="content">
+                    <div class="title">Title</div>
+                    <div class="subtitle">Subtitle</div>
+                </div>
+                <div class="action">
+                    <button class="edit-task">Edit</button>
+                    <button class="delete-task">delete</button>
+                </div>
+            </li> -->
+        </ul>
+    </section>
+
+    <section id="right-col">
+        <header>
+            <div>
+                <button id="back-btn">Back</button>
+            </div>
+            <div class="task-list">
+                Tasks Details View
+                <button id="log-out-btn" class="out-btn">LOG OUT</button>
+            </div>
+        </header>
+        <div id="right-col-detail"></div>
+
+
+
+    </section>
+
+    </main>
+    <!-- Pop-up window for adding tasks -->
+    <div id="task-overlay">
+        <div id="task">
+            <div class="task-header"> <h1>Create Task</h1> </div>
+            <ul id="error-label"></ul>
+
+            <div class="task-content"> 
+                <div class="row">
+                    <div class="input-group">
+                        <label> Task Names</label>
+                        <input type="text" id="task-name">
+                    </div>
+                    <div class="input-group"> 
+                        <label>Start Date</label>
+                        <input type="date" id="start-date">
+                    </div>
+                    <div class="input-group">
+                        <label>Priority</label>
+                        <select id="priority">
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group">
+                        <label>Assigned To</label>
+                        <input type="text" id="assigned-to">
+                    </div>
+                    <div class="input-group">
+                        <label>Status</label>
+                        <input type="text" id="task-status">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="input-group">
+                        <label> Supervisor's Email Address</label>
+                        <input type="email" id="email">
+                    </div>
+ 
+                </div>
+
+                
+            </div>
+
+            <div class="task-footer">
+                <button class="close-btn">Close</button>
+                <button class="save-btn">Save</button>
+            </div>
+
+        </div>
+
+    </div>
+ <script src="firebase-sdk.js" type="module"></script>
+<script src="app.js" type="module"></script>
+</body>
+</html>
