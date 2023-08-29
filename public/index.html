@@ -1,33 +1,35 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            CTMT Auth Form.
-        </title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <h1>The Collaboration and Task Management Tool</h1>
-        <div class="center-box" id="login-div">
-            <h2>Login Here</h2>
-            <input type="email" id="login-email" class="text-field" name="login-email" placeholder="Email" /> <br>
-            <input type="password" id="login-password" class="text-field" name="login-password" placeholder="password" /> <br>
-            <button id="login-btn" class="btn-style">Login</button><br>
-            <button id="reg-btn" class="an-btn">Dont Have an Account? Register</button>
-        </div>
-        <div class="center-box" id="register-div">
-            <h2>Register</h2>
-            <input type="email" id="register-email" class="text-field" name="register-email" placeholder="Email" /> <br>
-            <input type="password" id="register-password" class="text-field" name="register-password" placeholder="password" /><br>
-            <button id="register-btn" class="btn-style">Register</button><br>
-            <button id="log-btn" class="an-btn">Have an Account? LOGIN</button>
-        </div>
-        <div id="result-box" >
-            <h3 id="result"> </h3>
+<head>
+    <title>
+        CTMT Auth Form.
+    </title>
+    <link rel="stylesheet" href="style.css"> <!-- Linking to external stylesheet for styling -->
+</head>
+<body>
+    <h1>The Collaboration and Task Management Tool</h1>
+    <!-- Login Form -->
+    <div class="center-box" id="login-div">
+        <h2>Login Here</h2>
+        <input type="email" id="login-email" class="text-field" name="login-email" placeholder="Email" /> <br>
+        <input type="password" id="login-password" class="text-field" name="login-password" placeholder="password" /> <br>
+        <button id="login-btn" class="btn-style">Login</button><br>
+        <button id="reg-btn" class="an-btn">Don't Have an Account? Register</button>
+    </div>
+    <!-- Registration Form -->
+    <div class="center-box" id="register-div">
+        <h2>Register</h2>
+        <input type="email" id="register-email" class="text-field" name="register-email" placeholder="Email" /> <br>
+        <input type="password" id="register-password" class="text-field" name="register-password" placeholder="password" /><br>
+        <button id="register-btn" class="btn-style">Register</button><br>
+        <button id="log-btn" class="an-btn">Have an Account? LOGIN</button>
+    </div>
+    <!-- Result Display Box -->
+    <div id="result-box">
+        <h3 id="result"> </h3>
+    </div>
 
-        </div>
-    
-    
-        <!-- <script src="firebase-sdk.js" type="module"></script> -->
-        <script src="auth.js" type="module"></script>
-    </body>
+    <!-- Including JavaScript code for authentication -->
+    <script src="auth.js" type="module"></script>
+</body>
 </html>
