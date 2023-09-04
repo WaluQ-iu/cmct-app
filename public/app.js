@@ -137,7 +137,20 @@ const getTask = (id) => {
         return task.id === id;
     });
 }
-
+//Calculate how long the task took from start date to completion time
+const taskCompletionDuration = (task) => {
+    if (task.taskstatus === "Completed") {
+      const startDate = new Date(task.startdate);
+      const endDate = new Date();
+      const duration = endDate - startDate;
+      const days = Math.floor(duration / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      return `${days} days ${hours} hours`;
+    } else {
+      return "Task still in Progress";
+    }
+  };
+  
 // Display task details on the right column
 const displayTaskOnTaskView =(id) => {
     const task = getTask(id);
@@ -152,7 +165,9 @@ rightColDetail.innerHTML = `
 <div class="label">Status:</div>
 <div class="data">${task.taskstatus} </div>
 <div class="label">Suppervisor Email:</div>
-<div class="data">${task.email} </div>`;
+<div class="data">${task.email} </div>
+<div class="label">Task Completion Duration:</div>
+<div class="data">${taskCompletionDuration(task)} </div>`;
 }
  
 // Add button click event handler to show task addition menu
