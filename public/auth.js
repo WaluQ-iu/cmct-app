@@ -46,7 +46,7 @@ document.getElementById("login-btn").addEventListener("click", function() {
         setTimeout(function() {
             // Redirect to index.html after delay
             window.location.href = "dash.html";
-        }, 6000); 
+        }, 3000); 
     })
     .catch((error) => {
         const errorCode = error.code;

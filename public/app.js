@@ -171,6 +171,8 @@ rightColDetail.innerHTML = `
 <div class="data">${task.taskstatus} </div>
 <div class="label">Suppervisor Email:</div>
 <div class="data">${task.email} </div>
+<div class="label">Priority:</div>
+<div class="data">${task.priority} </div>
 <div class="label">Task Completion Duration:</div>
 <div class="data">${taskCompletionDuration(task)} </div>`;
 }
