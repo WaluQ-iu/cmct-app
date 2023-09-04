@@ -28,6 +28,13 @@ Firebase Account: Create a Firebase account at https://firebase.google.com/.
 8. In the project directory, find the firebase-config.js file.
 9. Replace the placeholder values with your Firebase configuration.
 
+> Database
+For the databse to work, a live connection to firebase's firestore database is required. Follow the steps below to configure the database
+1. In the Firebase project dashboard, click on "Firestore" from the left-hand menu.
+2. Click the "Create Database" button to set up Firestore for the project.
+3. Choose your prefered location preference, default used for this project
+4. Firestore has security rules that define who can read and write data. Configure security rules accordingly
+
 > Deployment
 1. Build the project
 2. Install Firebase CLI:

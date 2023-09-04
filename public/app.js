@@ -53,15 +53,18 @@ const showTasks = (tasks) => {
 
     tasks.forEach(task => {
         // Determine the CSS class based on task status
-        let statusClass ="";
-        if (task.taskstatus === "Pending") {
-            statusClass = "task-pending";
-        } else if (task.taskstatus === "In-Progress") {
-            statusClass = "task-in-progress";
-        } else if (task.taskStatus === "Completed") {
-            statusClass = "task-completed";
+        // let statusClass ="";
+        // if (String(task.taskstatus === "Pending")) {
+        //     statusClass = "task-pending";
+        // } else if (String(task.taskstatus === "In-Progress")) {
+        //     statusClass = "task-in-progress";
+        // } else if (String(task.taskstatus === "Completed") ){
+        //     statusClass = "task-completed";
 
-        }
+        // }
+        // const taskItem = document.createElement("li");
+        // taskItem.classList.add(statusClass);
+
 
         // Get the first two letters of the taskname
         const tasknameInitials = task.taskname.substring(0, 2).toUpperCase();
@@ -84,6 +87,8 @@ const showTasks = (tasks) => {
                 <button class="delete-task">Delete</button>
             </div>
         </li>`;
+        // Add the CSS classs to the li element
+        //li.classList.add(statusClass);
         tasksList.innerHTML += li;
     })
 }

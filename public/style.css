@@ -243,19 +243,6 @@ input {
     display: none;
 }
 
-/* Change background depending on task status */
-
-.task-pending {
-    background-color: red;
-}
-
-.task-in-progress {
-    background-color: yellow;
-}
-
-.task-completed {
-    background-color: green;
-}
 /* Dashboard Responsive styles for small screens */
 @media only screen and (max-width:600px) {
     #app-layout #right-col {
