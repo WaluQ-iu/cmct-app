@@ -8,11 +8,26 @@
     <title>Collaboration and Task Management Tool</title>
     <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="style.css"/>
+ 
+
 </head>
 <body>
     <!-- Main heading -->
     <h1>The Collaboration and Task Management Tool</h1>
-
+    <div class="left"></div>
+    <div class="task-list">
+        <!-- Add filter elements here -->
+        <label for="filter-select">Filter by Task Status:</label>
+        <select id="filter-select">
+            <option value="all">All</option>
+            <option value="Pending">Pending</option>
+            <option value="In-Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select>
+        <div class="right">
+            <button class="add-btn">Add New Task</button>
+        </div>
+    </div>
     <!-- Main content layout -->
     <main id="app-layout">
     
@@ -22,9 +37,9 @@
         <header>
             <div class="left"></div>
             <div class="task-list">Tasks List</div>
-            <div class="right">
+            <!-- <div class="right">
                 <button class="add-btn">Add</button>
-            </div>
+            </div> -->
         </header>
         <!-- List of tasks -->
         <ul id="tasks-list">
@@ -89,8 +104,8 @@
                     <div class="input-group">
                         <label>Status</label>
                         <select name="" id="task-status">
+                            <option value="Pending" >Pending</option>
                             <option value="In-Progress">In-Progress</option>
-                            <option value="Pending">Pending</option>
                             <option value="Completed">Completed</option>
                         </select>
                         

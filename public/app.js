@@ -145,7 +145,7 @@ const rightColDetail = document.getElementById("right-col-detail");
 rightColDetail.innerHTML = `
 <div class="label">Task:</div>
 <div class="data">${task.taskname} </div>
-<div class="label">Assigned Tt:</div>
+<div class="label">Assigned To:</div>
 <div class="data">${task.assignedto} </div>
 <div class="label">Start Date:</div>
 <div class="data">${task.startdate} </div>
@@ -169,7 +169,7 @@ const addBtnPressed = () => {
     startDate.value = "";
     priority.value = "";
     assignedTo.value = "";
-    taskStatus.value = "";
+    taskStatus.value = "Pending";
     email.value = "";
 }
 addBtn.addEventListener("click", addBtnPressed);
@@ -303,6 +303,22 @@ const showErrorMessages =() =>{
         li.style.color = "red";
         errorLabel.appendChild(li);
     }
-
 }
 
+// Event listener for the filter select element
+const filterSelect = document.getElementById("filter-select");
+filterSelect.addEventListener("change", () => {
+    const selectedStatus = filterSelect.value;
+
+    // Filter tasks based on the selected status
+    const filteredTasks = tasks.filter(task => {
+        if (selectedStatus === "all") {
+            return true; // Show all tasks
+        } else {
+            return task.taskstatus === selectedStatus;
+        }
+    });
+
+    // Display the filtered tasks
+    showTasks(filteredTasks);
+});
